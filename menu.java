@@ -84,6 +84,12 @@ public class menu {
                     break;
                 case 6:
                     System.out.println("punto 6");
+                    objProductosuper[][] matriz = new objProductosuper[n][n];
+
+                    matriz = m.registrarProductos(matriz);
+
+                    System.out.println("Productos disponibles:");
+                    m.mostrarDisponibles(matriz);
                     break;
                 case 7:
                     ObjEstudiante[][] me = new ObjEstudiante[n][n];
