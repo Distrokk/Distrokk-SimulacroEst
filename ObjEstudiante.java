@@ -1,7 +1,7 @@
 public class ObjEstudiante{
     private String Nombre;
-    private String Calificacion;
-    public ObjEstudiante(String nombre, String calificacion) {
+    private double Calificacion;
+    public ObjEstudiante(String nombre, double calificacion) {
         Nombre = nombre;
         Calificacion = calificacion;
     }
@@ -13,10 +13,10 @@ public class ObjEstudiante{
     public void setNombre(String nombre) {
         Nombre = nombre;
     }
-    public String getCalificacion() {
+    public double getCalificacion() {
         return Calificacion;
     }
-    public void setCalificacion(String calificacion) {
+    public void setCalificacion(double calificacion) {
         Calificacion = calificacion;
     }
 
