@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.spi.CurrencyNameProvider;
 
 public class menu {
     public static void main(String[] args) {
@@ -87,7 +86,10 @@ public class menu {
                     System.out.println("punto 6");
                     break;
                 case 7:
-                    System.out.println("punto 7");
+                    ObjEstudiante[][] me = new ObjEstudiante[n][n];
+                    me = m.LlenarMatriz(n);
+                    m.AgruparEstudiantes(me);
+
                     break;
                 case 8:
                     System.out.println("punto 8");
