@@ -71,10 +71,11 @@ public class Metodos {
                 System.out.println("Calificacion del estudiante: ");
                 double Calificacion = sc.nextDouble();
                 sc.nextLine();
-                if(Calificacion < 1 || Calificacion > 5){
+                if (Calificacion < 1 || Calificacion > 5) {
                     System.out.println("Valores invalidos, vuelva a ingresar el valor mayor a 1, menor que 5");
                 }
-                while(Calificacion < 1 || Calificacion > 5);
+                while (Calificacion < 1 || Calificacion > 5)
+                    ;
 
                 matriz[i][j] = new ObjEstudiante(Nombre, Calificacion);
             }
@@ -98,9 +99,9 @@ public class Metodos {
                     exelente.add(est);
                 } else if (nota >= 3.5) {
                     bueno.add(est);
-                } else if(nota >= 3.0){
+                } else if (nota >= 3.0) {
                     bajo.add(est);
-                } else{
+                } else {
                     lamentable.add(est);
                 }
             }
@@ -123,14 +124,14 @@ public class Metodos {
             e.mostar();
     }
 
-     public objProductosuper[][] registrarProductos(objProductosuper[][] matriz) {
+    public objProductosuper[][] registrarProductos(objProductosuper[][] matriz) {
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
 
                 objProductosuper P = new objProductosuper();
 
-                System.out.println("\nProducto en posición " + (j+1));
+                System.out.println("\nProducto en posición " + (j + 1));
 
                 System.out.print("Ingrese nombre: ");
                 P.setNombre(sc.nextLine());
@@ -148,29 +149,69 @@ public class Metodos {
         return matriz;
     }
 
+    public void mostrarDisponibles(objProductosuper[][] matriz) {
 
-public void mostrarDisponibles(objProductosuper[][] matriz) {
+        boolean hayDisponibles = false;
 
-    boolean hayDisponibles = false;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
 
-    for (int i = 0; i < matriz.length; i++) {
-        for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][j] != null && matriz[i][j].isDisponibilidad()) {
 
-            if (matriz[i][j] != null && matriz[i][j].isDisponibilidad()) {
+                    System.out.println("Producto en posicion " + (j + 1));
+                    System.out.println("Nombre: " + matriz[i][j].getNombre());
+                    System.out.println("Precio: " + matriz[i][j].getPrecio());
+                    System.out.println("Disponible: " + matriz[i][j].isDisponibilidad());
+                    System.out.println("*************************************");
 
-                System.out.println("Producto en posicion " + (j+1));
-                System.out.println("Nombre: " + matriz[i][j].getNombre());
-                System.out.println("Precio: " + matriz[i][j].getPrecio());
-                System.out.println("Disponible: " + matriz[i][j].isDisponibilidad());
-                System.out.println("*************************************");
-
-                hayDisponibles = true;
+                    hayDisponibles = true;
+                }
             }
+        }
+
+        if (!hayDisponibles) {
+            System.out.println("No hay productos disponibles.");
         }
     }
 
-    if (!hayDisponibles) {
-        System.out.println("No hay productos disponibles.");
+    public objtienda[][] registarProductos(objtienda[][] r) {
+
+        for (int i = 0; i < r.length; i++) {
+            for (int j = 0; j < r.length; j++) {
+                objtienda o = new objtienda();
+
+                System.out.println("ingrese el nombre del producto: ");
+                o.setProducto(sc.next());
+
+                System.out.println("ingrese la cantidad ");
+                o.setCantidad(sc.nextInt());
+
+                r[i][j] = o;
+
+            }
+        }
+        return r;
     }
-} 
+
+    public int TotalInventario(objtienda[][] r) {
+        int suma = 0;
+        for (int i = 0; i < r.length; i++) {
+            for (int j = 0; j < r.length; j++) {
+                suma = suma + r[i][j].getCantidad();
+            }
+        }
+        return suma;
+    }
+
+    public void MostrarIventario(objtienda[][] r, int total) {
+
+        for (int i = 0; i < r.length; i++) {
+            for (int j = 0; j < r.length; j++) {
+                System.out.println(
+                        "Producto registrado: " + r[i][j].getProducto() + " cantidad: " + r[i][j].getCantidad());
+            }
+        }
+        System.out.println("la cantidad de productos es: " + total);
+    }
+
 }

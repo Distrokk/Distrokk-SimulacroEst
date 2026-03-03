@@ -29,7 +29,13 @@ public class menu {
                     System.out.println("punto 1");
                     break;
                 case 2:
-                    System.out.println("punto 2");
+
+                    objtienda[][] r = new objtienda[n][n];
+
+                    r = m.registarProductos(r);
+                    int suma = m.TotalInventario(r);
+                    m.MostrarIventario(r, suma);
+
                     break;
                 case 3:
                     System.out.println("punto 3");
