@@ -69,7 +69,12 @@ public class Metodos {
                 String Nombre = sc.nextLine();
 
                 System.out.println("Calificacion del estudiante: ");
-                String Calificacion = sc.nextLine();
+                double Calificacion = sc.nextDouble();
+                sc.nextLine();
+                if(Calificacion < 1 || Calificacion > 5){
+                    System.out.println("Valores invalidos, vuelva a ingresar el valor mayor a 1, menor que 5");
+                }
+                while(Calificacion < 1 || Calificacion > 5);
 
                 matriz[i][j] = new ObjEstudiante(Nombre, Calificacion);
             }
@@ -79,34 +84,42 @@ public class Metodos {
     }
 
     public void AgruparEstudiantes(ObjEstudiante[][] matriz) {
-        ArrayList<ObjEstudiante> grupoA = new ArrayList<>();
-        ArrayList<ObjEstudiante> grupoB = new ArrayList<>();
-        ArrayList<ObjEstudiante> grupoC = new ArrayList<>();
+        ArrayList<ObjEstudiante> exelente = new ArrayList<>();
+        ArrayList<ObjEstudiante> bueno = new ArrayList<>();
+        ArrayList<ObjEstudiante> bajo = new ArrayList<>();
+        ArrayList<ObjEstudiante> lamentable = new ArrayList<>();
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
                 ObjEstudiante est = matriz[i][j];
+                double nota = est.getCalificacion();
 
-                if (est.getCalificacion().equalsIgnoreCase("A")) {
-                    grupoA.add(est);
-                } else if (est.getCalificacion().equalsIgnoreCase("B")) {
-                    grupoB.add(est);
-                } else {
-                    grupoC.add(est);
+                if (nota >= 5.4) {
+                    exelente.add(est);
+                } else if (nota >= 3.5) {
+                    bueno.add(est);
+                } else if(nota >= 3.0){
+                    bajo.add(est);
+                } else{
+                    lamentable.add(est);
                 }
             }
         }
 
-        System.out.println("\nGrupo A: ");
-        for (ObjEstudiante e : grupoA)
+        System.out.println("\nEXELENTE: ");
+        for (ObjEstudiante e : exelente)
             e.mostar();
 
-        System.out.println("\nGrupo B: ");
-        for (ObjEstudiante e : grupoB)
+        System.out.println("\nBUENO: ");
+        for (ObjEstudiante e : bueno)
             e.mostar();
 
-        System.out.println("\nGrupo C: ");
-        for (ObjEstudiante e : grupoC)
+        System.out.println("\nBAJO: ");
+        for (ObjEstudiante e : bajo)
+            e.mostar();
+
+        System.out.println("\nLAMENTABLE: ");
+        for (ObjEstudiante e : lamentable)
             e.mostar();
     }
 }
